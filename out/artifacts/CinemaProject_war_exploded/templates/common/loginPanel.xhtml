@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <h:form>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline == null}">
+                <p style="color:brown;font-size:20px;font-family:Arial;font-weight:bold;">
+                    <h:outputText value="Логин:" style="position:relative;left:450px;color:brown"/>
+                    <h:inputText style="position:relative;left:460px; font-size: 20px;
+                    border-width:0px 0px 1px 1px; border:2px solid #000000" value="#{registerAndAuthorizationBean.login}"/></p>
+                <p style="color:brown;font-size:20px;font-family:Arial;font-weight:bold;">
+                    <h:outputText style="position:relative;left:450px;color:brown" value="Пароль: "/>
+                    <h:inputSecret style="position:relative;left:450px;font-size: 20px;
+                    border-width:0px 0px 1px 1px; border:2px solid #000000" value="#{registerAndAuthorizationBean.password}"/></p>
+                <p><h:commandButton value="Авторизоваться" action="#{registerAndAuthorizationBean.authorize()}"
+                                    style="border-radius:10px; background-color: #ff7f00;
+                    position: relative;left: 450px; font-size:20px; font-family:Arial;
+                    font-weight:bold; border-width:0px 0px 1px 1px; border:2px solid #000000;
+                    width:250px; height: 40px;"/></p>
+                <br/>
+                <p><h:link style="position:relative;left:450px;color:brown;font-size: 20px" value="Зарегистрироваться" outcome="register"/>
+                </p>
+            </ui:fragment>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline != null}">
+                <p style="font-weight: bold"><h:outputText style="position: relative;left: 450px;color: brown" value="Добро пожаловать,#{registerAndAuthorizationBean.accountOnline.login}"/></p>
+                <p><h:commandLink style="position: relative;left: 450px;color: brown" value="Бонусный счет" action="history"/></p>
+                <p><h:commandLink style="position: relative;left: 450px;color: brown" value="Выйти" action="#{registerAndAuthorizationBean.logout()}"/></p>
+            </ui:fragment>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>
